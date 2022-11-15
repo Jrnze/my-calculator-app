@@ -1,3 +1,5 @@
+import evaluate from "./Evaluate"
+
 export default function Reducer(state, {type, payload}) {
     switch(type) {
       case ACTIONS.ADD_DIGIT:
@@ -89,29 +91,4 @@ export const ACTIONS = {
   CLEAR: "clear",
   DELETE_DIGIT: "delete-digit",
   EVALUATE: "evaluate"
-}
-
-function evaluate({currentOperand, previousOperand, operation}) {
-  const prev = parseFloat(previousOperand);
-  const current = parseFloat(currentOperand);
-  if (isNaN(prev) || isNaN(current)) return "";
-  let computation = "";
-  switch (operation) {
-    case "+":
-      computation = prev + current;
-      break;
-    case "-":
-      computation = prev - current;
-      break;
-    case "x":
-      computation = prev * current;
-      break;
-    case "÷":
-      computation = prev / current;
-      break;
-    default:
-      return null
-  }
-
-  return computation.toString();
 }
